@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Valentine's Day Sabaina 💕</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(180deg, #ffeef8 0%, #ffd6e7 50%, #ffc4dd 100%);
+            min-height: 100vh;
+            color: #5a3d3d;
+            overflow-x: hidden;
+        }
+        
+        /* Floating hearts background */
+        .floating-heart {
+            position: fixed;
+            font-size: 20px;
+            opacity: 0.3;
+            animation: floatUp 10s infinite ease-in-out;
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        @keyframes floatUp {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.3; }
+            90% { opacity: 0.3; }
+            100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+        }
+        
+        .page {
+            display: none;
+            min-height: 100vh;
+            padding: 40px 20px;
+            position: relative;
+            z-index: 1;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .page.active {
+            display: flex;
+            animation: fadeIn 0.8s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Typography */
+        .script-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3.5rem;
+            color: #e91e63;
+            text-align: center;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .section-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.5rem;
+            color: #d81b60;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+        
+        .body-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #5a3d3d;
+            text-align: center;
+            max-width: 340px;
+        }
+        
+        /* Heart icon */
+        .heart-icon {
+            width: 80px;
+            height: 80px;
+            border: 3px solid #e91e63;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            color: #e91e63;
+            margin: 20px 0;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        
+        /* Buttons */
+        .pink-btn {
+            background: linear-gradient(135deg, #ff4081, #e91e63);
+            color: white;
+            border: none;
+            padding: 18px 50px;
+            border-radius: 50px;
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.4rem;
+            cursor: pointer;
+            box-shadow: 0 8px 25px rgba(233, 30, 99, 0.3);
+            transition: all 0.3s ease;
+            margin-top: 30px;
+        }
+        
+        .pink-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(233, 30, 99, 0.4);
+        }
+        
+        /* Cards */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 25px;
+            margin: 15px 0;
+            max-width: 350px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            border: 1px solid rgba(255,255,255,0.5);
+        }
+        
+        /* Photo card */
+        .photo-card {
+            width: 100%;
+            max-width: 350px;
+            height: 200px;
+            background: linear-gradient(135deg, #ffc4dd, #ff9eb5);
+            border-radius: 20px;
+            margin: 15px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .photo-card::before {
+            content: '💕';
+            position: absolute;
+            font-size: 8rem;
+            opacity: 0.2;
+        }
+        
+        /* Reason item */
+        .reason-item {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            background: rgba(255,255,255,0.6);
+            padding: 20px;
+            border-radius: 15px;
+            margin: 10px 0;
+            max-width: 350px;
+            width: 100%;
+        }
+        
+        .reason-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #ff4081, #e91e63);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+            flex-shrink: 0;
+        }
+        
+        .reason-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 1rem;
+            color: #5a3d3d;
+        }
+        
+        /* Letter styling */
+        .love-letter {
+            background: rgba(255,255,255,0.85);
+            border-radius: 20px;
+            padding: 30px;
+            max-width: 350px;
+            max-height: 60vh;
+            overflow-y: auto;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+        
+        .love-letter h3 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.8rem;
+            color: #e91e63;
+            margin-bottom: 15px;
+        }
+        
+        .love-letter p {
+            font-family: 'Playfair Display', serif;
+            font-size: 1rem;
+            line-height: 2;
+            color: #5a3d3d;
+            margin-bottom: 15px;
+            text-align: left;
+        }
+        
+        .signature {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.5rem;
+            color: #e91e63;
+            text-align: right;
+            margin-top: 20px;
+        }
+        
+        /* Final page */
+        .final-bg {
+            background: linear-gradient(135deg, rgba(233,30,99,0.8), rgba(156,39,176,0.8));
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1;
+        }
+        
+        .bokeh {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.3);
+            animation: bokehFloat 8s infinite ease-in-out;
+        }
+        
+        @keyframes bokehFloat {
+            0%, 100% { transform: translate(0,0); }
+            50% { transform: translate(20px,-20px); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Floating hearts -->
+    <div class="floating-heart" style="left: 10%; animation-delay: 0s;">💕</div>
+    <div class="floating-heart" style="left: 30%; animation-delay: 2s;">💖</div>
+    <div class="floating-heart" style="left: 50%; animation-delay: 4s;">💗</div>
+    <div class="floating-heart" style="left: 70%; animation-delay: 6s;">💓</div>
+    <div class="floating-heart" style="left: 90%; animation-delay: 8s;">💝</div>
+
+    <!-- Music -->
+    <audio id="bgMusic" loop>
+        <source src="https://files.catbox.moe/4a15jn.mp3" type="audio/mpeg">
+    </audio>
+    <!-- PAGE 1: Opening -->
+    <div class="page active" id="page1">
+        <div class="heart-icon">♡</div>
+        <h1 class="script-title">I Love You</h1>
+        <p class="body-text">
+            Thank you for being the most amazing girlfriend in the world. You make every day feel like Valentine's Day. I am so grateful to have you in my life, Sabaina.
+        </p>
+        <button class="pink-btn" onclick="goPage(2); startMusic();">Click for a Surprise! 💕</button>
+        
+        <div class="glass-card" style="margin-top: 40px; text-align: center;">
+            <h3 style="font-family: 'Dancing Script', cursive; font-size: 1.8rem; color: #d81b60; margin-bottom: 10px;">Forever & Always</h3>
+            <p style="color: #888; font-style: italic;">Your Loving Boyfriend, Bazzi</p>
+        </div>
+        
+        <div style="margin-top: 30px; font-size: 1.5rem; letter-spacing: 10px;">
+            💕💖💗💓💝
+        </div>
+    </div>
+
+    <!-- PAGE 2: Our Beautiful Moments -->
+    <div class="page" id="page2">
+        <h2 class="section-title">Our Beautiful Moments</h2>
+        <p class="body-text" style="margin-bottom: 20px;">Memories that make my heart smile</p>
+        
+        <div class="photo-card">🌹</div>
+        <p style="font-family: 'Dancing Script', cursive; font-size: 1.3rem; color: #d81b60; text-align: center;">You are as beautiful as these roses</p>
+        
+        <div class="photo-card" style="background: linear-gradient(135deg, #ffd6e7, #ffc4dd);">🍫</div>
+        <p style="font-family: 'Dancing Script', cursive; font-size: 1.3rem; color: #d81b60; text-align: center;">Sweet like chocolate, precious like you</p>
+        
+        <div class="photo-card" style="background: linear-gradient(135deg, #c8e6c9, #a5d6a7);">👫</div>
+        <p style="font-family: 'Dancing Script', cursive; font-size: 1.3rem; color: #d81b60; text-align: center;">Every moment is a date with you</p>
+        
+        <button class="pink-btn" onclick="goPage(3)">Why I Love You 💖</button>
+    </div>
+
+    <!-- PAGE 3: Reasons Why I Love You -->
+    <div class="page" id="page3">
+        <h2 class="section-title">Reasons Why I Love You</h2>
+        <p class="body-text" style="margin-bottom: 25px;">There are infinite reasons, but here are just a few...</p>
+        
+        <div class="reason-item">
+            <div class="reason-icon">😊</div>
+            <p class="reason-text">Your beautiful smile that lights up my world</p>
+        </div>
+        
+        <div class="reason-item">
+            <div class="reason-icon">✨</div>
+            <p class="reason-text">The way you make every moment special</p>
+        </div>
+        
+        <div class="reason-item">
+            <div class="reason-icon">🎵</div>
+            <p class="reason-text">Your laugh that sounds like music to my ears</p>
+        </div>
+        
+        <div class="reason-item">
+            <div class="reason-icon">💝</div>
+            <p class="reason-text">Your kindness that touches everyone around you</p>
+        </div>
+        
+        <div class="reason-item">
+            <div class="reason-icon">🎁</div>
+            <p class="reason-text">How you always know how to make me feel better</p>
+        </div>
+        
+        <div class="reason-item">
+            <div class="reason-icon">♥️</div>
+            <p class="reason-text">The way you love me for who I am</p>
+        </div>
+        
+        <button class="pink-btn" onclick="goPage(4)">Read My Letter 💌</button>
+    </div>
+    <!-- PAGE 4: My Love Letter -->
+    <div class="page" id="page4">
+        <h2 class="section-title">My Love Letter to You</h2>
+        
+        <div class="love-letter">
+            <h3>My Dearest Sabaina,</h3>
+            
+            <p>
+                As I sit down to write this, my heart overflows with love for you. Words seem insufficient to express the depth of my feelings, but I'll try my best to let you know what you mean to me.
+            </p>
+            
+            <p>
+                From the moment you entered my life, everything changed. The world became brighter, colors more vivid, and every day became an adventure I wanted to share with you. Your smile is the first thing I think of in the morning and the last thing on my mind at night.
+            </p>
+            
+            <p>
+                I love the way you laugh, the way your eyes light up when you're excited, and the way you care so deeply about the people you love. Your kindness, your strength, and your beautiful spirit inspire me every single day.
+            </p>
+            
+            <p>
+                Thank you for being my partner, my best friend, and my greatest love. I promise to cherish you, support you, and love you more with each passing day.
+            </p>
+            
+            <div class="signature">
+                Forever Yours,<br>
+                With All My Love,<br>
+                Bazzi 💕
+            </div>
+        </div>
+        
+        <button class="pink-btn" onclick="goPage(5)" style="margin-top: 30px;">Happy Valentine's Day 💝</button>
+    </div>
+
+    <!-- PAGE 5: Final -->
+    <div class="page" id="page5" style="position: relative;">
+        <div class="final-bg"></div>
+        <div class="bokeh" style="width: 100px; height: 100px; top: 20%; left: 10%;"></div>
+        <div class="bokeh" style="width: 150px; height: 150px; top: 60%; right: 10%; animation-delay: 2s;"></div>
+        <div class="bokeh" style="width: 80px; height: 80px; bottom: 20%; left: 30%; animation-delay: 4s;"></div>
+        
+        <div style="text-align: center; color: white; z-index: 1;">
+            <p style="font-family: 'Dancing Script', cursive; font-size: 1.5rem; margin-bottom: 10px;">To My Beautiful Girlfriend</p>
+            <h1 class="script-title" style="color: white; font-size: 3rem;">Happy Valentine's Day</h1>
+            
+            <div style="font-size: 2rem; margin: 20px 0; letter-spacing: 10px;">
+                💕♥️💕
+            </div>
+            
+            <p class="body-text" style="color: white; max-width: 300px; margin: 20px auto;">
+                Every moment with you is a gift, every smile a treasure. Today, I want to remind you just how much you mean to me, Sabaina.
+            </p>
+            
+            <p style="font-family: 'Dancing Script', cursive; font-size: 1.8rem; margin-top: 30px;">
+                I love you more than words can say.<br>
+                Forever yours,<br>
+                Bazzi 💕
+            </p>
+        </div>
+    </div>
+
+    <script>
+        function goPage(n) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.getElementById('page' + n).classList.add('active');
+        }
+        
+        function startMusic() {
+            const music = document.getElementById('bgMusic');
+            music.play().catch(() => {});
+        }
+        
+        // Create floating hearts dynamically
+        setInterval(() => {
+            const heart = document.createElement('div');
+            heart.className = 'floating-heart';
+            heart.textContent = ['💕', '💖', '💗', '💓', '💝'][Math.floor(Math.random() * 5)];
+            heart.style.left = Math.random() * 100 + '%';
+            heart.style.animationDuration = (Math.random() * 5 + 8) + 's';
+            heart.style.fontSize = (Math.random() * 15 + 15) + 'px';
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 10000);
+        }, 3000);
+    </script>
+</body>
+</html>
